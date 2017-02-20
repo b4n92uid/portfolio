@@ -1,0 +1,68 @@
+{% set commenter = fn('wp_get_current_commenter') %}
+{% set req = fn('get_option', 'require_name_email') %}
+
+{% set comment_field %}
+  <p class="form-group comment-form-comment">
+    <label for="comment">{{ _x( 'Comment', 'noun' ) }}</label>
+    <textarea class="form-control" id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea>
+  </p>
+{% endset %}
+
+{% set must_log_in %}
+  {# <p class="must-log-in"> #}
+    {# {{ __('You must be <a href="%s">logged in</a> to post a comment') }} #}
+    {# wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) #}
+  {# </p> #}
+{% endset %}
+
+{% set logged_in_as %}
+  {# <p class="logged-in-as"> #}
+    {# {{ __( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>' ) }} #}
+    {# admin_url( 'profile.php' ), #}
+    {# $user_identity, #}
+    {# wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ) #}
+  {# </p> #}
+{% endset %}
+
+{% set comment_notes_before %}
+  {# <p class="comment-notes"> #}
+    {# {{ __( 'Your email address will not be published.' ) }} #}
+  {# </p> #}
+{% endset %}
+
+{% set comment_notes_after %}
+  {# {{ __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s' ) }} #}
+  {# <code>{{ fn('allowed_tags') }}</code> #}
+{% endset %}
+
+{% set author %}
+<p class="comment-form-author">
+  <label for="author">{{ __( 'Name' ) }} </label> {% if req %}<span class="required">*</span>{% endif %}
+  <input id="author" class="form-control" name="author" type="text" value="{{ commenter['comment_author'] }}" size="30" />
+</p>
+{% endset %}
+
+{% set email %}
+<p class="comment-form-email">
+  <label for="email">{{ __( 'Email' ) }}</label> {% if req %}<span class="required">*</span>{% endif %}
+  <input id="email" class="form-control" name="email" type="text" value="{{ commenter['comment_author_email'] }}" size="30" />
+</p>
+{% endset %}
+
+{% set url %}
+<p class="comment-form-url">
+  <label for="url">{{ __( 'Website' ) }}</label>
+  <input id="url" class="form-control" name="url" type="text" value="{{ commenter['comment_author_url'] }}" size="30" />
+</p>
+{% endset %}
+
+{% set args = {
+  comment_field: comment_field,
+  must_log_in: must_log_in,
+  logged_in_as: logged_in_as,
+  comment_notes_before: comment_notes_before,
+  fields: {author: author, email: email, url: url},
+  class_submit: 'btn btn-primary',
+} %}
+
+{{ fn('comment_form', args) }}

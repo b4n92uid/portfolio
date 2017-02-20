@@ -1,0 +1,6 @@
+{
+    "require": {
+        "timber/timber": "^1.1",
+        "easybook/geshi": "v1.0.8.18"
+    }
+}

@@ -1,0 +1,73 @@
+{% extends "base.twig" %}
+
+{% block script %}
+<script>
+  jQuery(function(){
+    $('header .avatar').boxRollovers({inner: 'img'});
+    $('section.projects .tile').boxRollovers({inner: '.tile-inner'});
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container home-page">
+  <header class="lead">
+    <div class="avatar">
+      <img src="{{ site.avatar_url(256) }}" alt="" />
+    </div>
+    <h1>{{ me.last_name }} {{ me.first_name }}</h1>
+    <h2>{{ me.description }}</h2>
+
+    <a href="{{ site.link }}/curriculumvita.pdf" class="btn btn-primary btn-large">
+      <i class="fa fa-file-pdf-o"></i> T&eacute;l&eacute;charger mon CV en PDF
+    </a>
+  </header>
+
+  <section class="projects">
+    {% set projects = TimberTerm('projects') %}
+
+    <h1>{{ projects.name }}</h1>
+
+    <div class="row">
+    {% for p in projects_list %}
+      <div class="col-lg-4 col-xs-6">
+        <div class="tile">
+          <a class="tile-inner" href="{{ p.link }}">
+            <img class="tile-image" src="{{ p.thumbnail.src('thumbnail') }}" alt="{{ p.title }}" />
+            <div class="tile-content">
+              <h3>{{ p.title }}</h3>
+              <p>{{ p.get_preview(8, false, null) }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </section>
+
+  <section class="skills">
+    <h1>{{ skills.title }}</h1>
+
+    {{ skills.content|raw }}
+  </section>
+
+  <section class="articles">
+    {% set articles = TimberTerm('articles') %}
+    <h1>{{ articles.name }}</h1>
+
+    <div class="row">
+      {% for p in articles_list %}
+      <div class="col-lg-4">
+        <div class="item">
+          <h3 class="title"><a href="{{ p.link }}">{{ p.title }}</a></h3>
+          <p class="summary">{{ p.get_preview(16, false , "Lire Plus") }}</p>
+        </div><!--//item-->
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+</div>
+
+{% endblock %}

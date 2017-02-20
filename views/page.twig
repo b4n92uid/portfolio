@@ -1,0 +1,30 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	{% include "include/mini-header.twig" %}
+
+	<div class="content-wrapper container">
+		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+			<section class="article-content">
+				<h1 class="article-title">{{post.title}}</h1>
+				<div class="article-body">
+					{{post.content}}
+				</div>
+			</section>
+		{% if post.comment_status != 'closed' %}
+			<section class="comments">
+				<div class="respond">
+					<h3 class="h2">{{ __('Commentaires') }}</h3>
+					{% include "include/comment-form.twig" %}
+					{# {{ fn('comment_form') }} #}
+				</div>
+				<div class="responses">
+					{% for cmt in post.get_comments() %}
+						{% include "include/comment.twig" with {comment:cmt} %}
+					{% endfor %}
+				</div>
+			</section>
+		{% endif %}
+		</article>
+	</div><!-- /content-wrapper -->
+{% endblock %}
