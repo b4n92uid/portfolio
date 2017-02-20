@@ -2,7 +2,7 @@
 * @Author: b4n92uid
 * @Date:   2016-11-25 21:33:47
 * @Last Modified by:   b4n92uid
-* @Last Modified time: 2017-02-20 21:28:50
+* @Last Modified time: 2017-02-20 23:03:03
 */
 
 @import "variables";
@@ -261,7 +261,9 @@ header {
 
   section.articles {
     .item {
-      height: 160px;
+      height: 192px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid $gray-darker;
       @media screen and (max-width: $screen-xs-max) {
         height: auto;
       }
@@ -270,7 +272,6 @@ header {
 }
 
 .page-title {
-  font-family: 'Josefin Sans', sans-serif;
   font-size: 3vmax;
 
   text-transform: uppercase;
