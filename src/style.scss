@@ -2,7 +2,7 @@
 * @Author: b4n92uid
 * @Date:   2016-11-25 21:33:47
 * @Last Modified by:   b4n92uid
-* @Last Modified time: 2017-02-20 23:03:03
+* @Last Modified time: 2017-02-24 16:18:37
 */
 
 @import "variables";
@@ -16,7 +16,9 @@ $trans-function: cubic-bezier(.29,.72,.02,.99);
 body {
   background: linear-gradient(-45deg, #000,#252525);
   background-attachment: fixed;
-  font-size: 1.1vmax;
+
+  font-size: 14pt;
+  min-width: 360px;
 }
 
 header {
@@ -24,7 +26,6 @@ header {
   margin-bottom: 4%;
 
   @media (max-width: $screen-xs-max) {
-    font-size: 2.5vmax;
     text-align: center;
   }
 }
@@ -46,6 +47,10 @@ header {
     background: url('img/eagle.png') no-repeat 100% 100%;
     background-size: contain;
 
+    @media screen and (max-width: $screen-md-max) {
+      background-position: center center;
+    }
+
     @media screen and (max-width: $screen-xs-max) {
       text-align: center;
       background-position: 0 30%;
@@ -55,7 +60,7 @@ header {
     h1 {
       margin-bottom: 4px;
 
-      font-size: 3vmax;
+      font-size: 200%;
       font-weight: bold;
 
       text-transform: uppercase;
@@ -64,7 +69,7 @@ header {
     h2 {
       margin: 0px;
 
-      font-size: 3vmax;
+      font-size: 180%;
     }
 
     .btn {
@@ -102,15 +107,12 @@ header {
 
     @media screen and (max-width: $screen-xs-max) {
       margin-top: 20%;
-      font-size: 2.2vmax;
     }
 
     margin-bottom: 8%;
 
     h1 {
       @extend .page-title;
-
-      font-size: 4vmax;
       padding-bottom: 2%;
     }
   }
@@ -124,7 +126,7 @@ header {
       perspective: 512px;
 
       @media (max-width: $screen-xs-max) {
-        width: 100%;
+        width: 40vw;
       }
 
       a.tile-inner {
@@ -140,17 +142,18 @@ header {
       }
 
       &-image {
-        // width: 275px;
         height: 300px;
-
-        @media (max-width: $screen-xs-max) {
-          height: 150px;
-        }
 
         filter: grayscale(100%);
         opacity: 0.4;
 
         transition: all $trans-duration $trans-function;
+
+        @media (max-width: $screen-xs-max) {
+          height: 40vw;
+          filter: none;
+          opacity: 1;
+        }
       }
 
       &-content {
@@ -166,26 +169,30 @@ header {
         padding: 4%;
 
         transition: all .75s cubic-bezier(0.29,0.72,0.02,0.99);
-        transform: translateY(3em);
 
         @media (max-width: $screen-xs-max) {
-          transform: translateY(3em);
-
-          h3 {
-            font-size: 3vmax;
-          }
+          background: rgba(0,0,0,0.5);
         }
 
         h3 {
           margin: 0;
           margin-bottom: 8px;
           border-radius: 7px;
+
+          @media (max-width: $screen-xs-max) {
+            font-size: 4vw;
+          }
         }
 
         p {
           opacity: 0;
           transform: scale(0.95);
-          height: 2.2em;
+          font-size: 90%;
+
+          height: 0;
+          overflow: hidden;
+
+          margin: 0;
 
           transition: all $trans-duration $trans-function;
         }
@@ -202,12 +209,13 @@ header {
           }
 
           .tile-content {
-            transform: translateY(0px);
             background: rgba(0,0,0,0.8);
 
             p {
               opacity: 1;
               transform: scale(1);
+
+              height: 4em;
             }
           }
 
@@ -251,10 +259,10 @@ header {
       }
 
       .badge {
-        font-size: 130%;
+        font-size: 100%;
         padding: 8px 11px;
         background: $brand-primary;
-        margin: 0.5%;
+        margin: 0.5% 0.25%;
       }
     }
   }
