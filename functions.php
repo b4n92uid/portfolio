@@ -69,14 +69,13 @@ class StarterSite extends TimberSite {
   }
 
 	function get_gallery($post) {
-	  $ids = json_decode($post->_gallery);
-    $srclist = array();
+    $srcArray = array();
 
-    foreach($ids as $id) {
-      $srclist[] = wp_get_attachment_image_src(intval($id), 'full');
+    foreach($post->_gallery as $id) {
+      $srcArray[] = wp_get_attachment_image_src(intval($id), 'full');
     }
 
-    return $srclist;
+    return $srcArray;
 	}
 
 	function add_to_context( $context ) {
