@@ -34,7 +34,11 @@
       <div class="col-lg-4 col-xs-6">
         <div class="tile">
           <a class="tile-inner" href="{{ p.link }}">
+            {% if p.thumbnail %}
             <img class="tile-image" src="{{ p.thumbnail.src('thumbnail') }}" alt="{{ p.title }}" />
+            {% else %}
+            <div class="tile-no-image"></div>
+            {% endif %}
             <div class="tile-content">
               <h3>{{ p.title }}</h3>
               <p>{{ p.get_preview(8, false, null) }}</p>

@@ -157,6 +157,16 @@ header {
         }
       }
 
+      &-no-image {
+        height: 300px;
+
+        background: black;
+
+        @media (max-width: $screen-xs-max) {
+          height: 40vw;
+        }
+      }
+
       &-content {
         position: absolute;
         left: 0;
