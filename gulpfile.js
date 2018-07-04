@@ -1,11 +1,7 @@
 
 const gulp = require('gulp');
-
 const $ = require('gulp-load-plugins')();
-
 const merge = require('merge-stream');
-const argv = require('yargs').argv;
-const fs = require('fs');
 
 const WP_HEADER = [
   '/**',
@@ -21,6 +17,12 @@ var config = {
     'src/script.js'
   ],
 
+  jsvendor: [
+    'node_modules/jquery/dist/jquery.js',
+    'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+    'node_modules/swiper/dist/js/swiper.js'
+  ],
+
   cssapp: [
     'src/style.scss'
   ],
@@ -33,20 +35,7 @@ var config = {
 
 gulp.task('deploy:js', function() {
 
-  var filterJS = $.filter('**/*.js', { restore: true });
-
-  var vendor = gulp.src('./bower.json')
-    .pipe($.mainBowerFiles())
-    .pipe(filterJS)
-
-  var app = gulp.src(config.jsapp);
-
-  return merge(app, vendor)
-    .pipe($.order([
-      'bower_components/jquery/dist/jquery.js',
-      'bower_components/**/*.*',
-      'js/main.js',
-    ], { base: './' }))
+  gulp.src(config.jsvendor.concat(config.jsapp))
     .pipe($.debug())
     .pipe($.sourcemaps.init({identityMap: true, debug: true}))
       .pipe($.uglify())
@@ -69,11 +58,9 @@ gulp.task('deploy:css', function() {
 
   var filterCSS = $.filter(['**/*.css'], { restore: true });
 
-  var vendor = gulp.src('./bower.json')
-    .pipe($.mainBowerFiles())
-    .pipe(filterCSS);
 
   var app = gulp.src(config.cssapp)
+    .pipe($.debug())
     .pipe($.plumber(function(error) {
         $.notify().write(error);
         this.emit('end');
@@ -83,13 +70,6 @@ gulp.task('deploy:css', function() {
       browsers: ['last 2 versions'],
       cascade: false
     }))
-
-  return merge(app, vendor)
-    .pipe($.order([
-      'bower_components/**/*.*',
-      'scss/*',
-    ], { base: './' }))
-    .pipe($.debug())
     .pipe($.uglifycss())
     .pipe($.concat('style.css'))
     .pipe($.header(WP_HEADER))
@@ -116,4 +96,3 @@ gulp.task('default', ['build'], function() {
     gulp.start('deploy:js');
   })
 });
-

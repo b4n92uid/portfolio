@@ -7,8 +7,9 @@
 
 @import "variables";
 
-@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "../bower_components/font-awesome/scss/font-awesome";
+@import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../node_modules/@mdi/font/scss/materialdesignicons";
+@import "../node_modules/swiper/dist/css/swiper";
 
 $trans-duration: 0.75s;
 $trans-function: cubic-bezier(.29,.72,.02,.99);
