@@ -20,7 +20,8 @@ var config = {
   jsvendor: [
     'node_modules/jquery/dist/jquery.js',
     'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
-    'node_modules/swiper/dist/js/swiper.js'
+    'node_modules/swiper/dist/js/swiper.js',
+    'node_modules/tilt.js/dest/tilt.jquery.js'
   ],
 
   cssapp: [

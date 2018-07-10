@@ -87,7 +87,6 @@ header {
     .avatar {
       float: left;
       margin-right: 2%;
-      perspective: 512px;
 
       @media screen and (max-width: $screen-xs-max) {
         float: none;
@@ -96,10 +95,10 @@ header {
       }
 
       img {
+        transform-style: preserve-3d;
         max-width: 100%;
-        border-radius: 4px;
-        transition: all $trans-duration $trans-function;
-        box-shadow: 0 0 12px 0px black;
+        border-radius: 8px;
+        box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.5);
       }
     }
   }
@@ -124,22 +123,19 @@ header {
       position: relative;
       width: 300px;
       margin: 8% auto;
-      perspective: 512px;
+      box-shadow: 0 0 24px 0px black;
 
       @media (max-width: $screen-xs-max) {
         width: 40vw;
       }
 
-      a.tile-inner {
-        overflow: hidden;
+      a.tile-content {
+        transform-style: preserve-3d;
 
         display: block;
         background: black;
         color: white;
-        box-shadow: 0 0 8px -2px black;
         text-shadow: 1px 0px 6px black;
-
-        transition: all $trans-duration $trans-function;
       }
 
       &-image {
@@ -167,7 +163,7 @@ header {
         }
       }
 
-      &-content {
+      &-caption {
         position: absolute;
         left: 0;
         right: 0;
@@ -178,11 +174,17 @@ header {
         justify-content: flex-end;
 
         padding: 4%;
+        margin: 30px;
 
-        transition: all .75s cubic-bezier(0.29,0.72,0.02,0.99);
+        border-radius: 8px;
+
+        transform: translateZ(60px);
 
         @media (max-width: $screen-xs-max) {
+          border-radius: 0;
           background: rgba(0,0,0,0.5);
+          margin: 0;
+          transform: translateZ(0px);
         }
 
         h3 {
@@ -209,7 +211,7 @@ header {
         }
       }
 
-      &.highlight {
+      &:hover {
 
         // Desktop
         @media (min-width: $screen-sm-min) {
@@ -219,7 +221,7 @@ header {
             filter: grayscale(0%);
           }
 
-          .tile-content {
+          .tile-caption {
             background: rgba(0,0,0,0.8);
 
             p {
@@ -241,7 +243,7 @@ header {
             transform: scale(1.1);
           }
 
-          .tile-content {
+          .tile-caption {
             background: rgba(0,0,0,0.8);
           }
         }

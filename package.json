@@ -26,6 +26,7 @@
     "gulp-uglifycss": "^1.0.6",
     "gulp-watch": "^4.3.10",
     "jquery": "^3.3.1",
-    "swiper": "^4.3.3"
+    "swiper": "^4.3.3",
+    "tilt.js": "^1.2.1"
   }
 }

@@ -3,8 +3,18 @@
 {% block script %}
 <script>
   jQuery(function(){
-    $('header .avatar').boxRollovers({inner: 'img'});
-    $('section.projects .tile').boxRollovers({inner: '.tile-inner'});
+    $('header.lead .avatar img').tilt({
+      scale: 1.05,
+      perspective: 500
+    })
+
+    $('section.projects .tile .tile-content').tilt({
+      scale: 1.1,
+      maxTilt: 10,
+      glare: true,
+      maxGlare: 0.25,
+      perspective: 500
+    })
   });
 </script>
 {% endblock %}
@@ -13,8 +23,8 @@
 
 <div class="container home-page">
   <header class="lead">
-    <div class="avatar">
-      <img src="{{ site.avatar_url(256) }}" alt="" />
+    <div class="avatar" >
+      <img src="{{ site.avatar_url(256) }}" alt="" data-tilt />
     </div>
     <h1>{{ me.last_name }} {{ me.first_name }}</h1>
     <h2>{{ me.description }}</h2>
@@ -33,13 +43,13 @@
     {% for p in projects_list %}
       <div class="col-lg-4 col-xs-6">
         <div class="tile">
-          <a class="tile-inner" href="{{ p.link }}">
+          <a class="tile-content" href="{{ p.link }}">
             {% if p.thumbnail %}
             <img class="tile-image" src="{{ p.thumbnail.src('thumbnail') }}" alt="{{ p.title }}" />
             {% else %}
             <div class="tile-no-image"></div>
             {% endif %}
-            <div class="tile-content">
+            <div class="tile-caption">
               <h3>{{ p.title }}</h3>
               <p>{{ p.get_preview(8, false, null) }}</p>
             </div>
