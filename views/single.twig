@@ -8,14 +8,20 @@
 		autoHeight: true,
 
     // If we need pagination
-    pagination: '.swiper-pagination',
+    pagination: {
+			el: '.swiper-pagination'
+		},
 
-    // Navigation arrows
-    nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev',
+		// Navigation arrows
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
 
     // And if we need scrollbar
-    scrollbar: '.swiper-scrollbar',
+    scrollbar: {
+			el: '.swiper-scrollbar'
+		},
 
     effect: 'coverflow',
   })
@@ -29,6 +35,8 @@
 		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
 			<section class="article-content">
 				<h1 class="article-title">{{post.title}}</h1>
+
+				{% if post|gallery|length > 0 %}
 				<div class="article-media">
 					<!-- Slider main container -->
 					<div class="swiper-container">
@@ -54,6 +62,8 @@
 
 
 				</div>
+				{% endif %}
+
 				<div class="article-body">
 					{{post.content}}
 				</div>
