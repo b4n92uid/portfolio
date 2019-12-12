@@ -25,7 +25,7 @@
     "bootstrap-sass": "^3.3.7",
     "gulp-uglifycss": "^1.0.6",
     "gulp-watch": "^4.3.10",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "swiper": "^4.4.1",
     "tilt.js": "^1.2.1"
   }
