@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "del": "^2.2.0",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "3.1.0",
     "gulp-concat": "~2.6.0",
     "gulp-debug": "^3.0.0",
@@ -12,7 +12,7 @@
     "gulp-main-bower-files": "^1.5.3",
     "gulp-modernizr": "^1.0.0-alpha",
     "gulp-notify": "^2.2.0",
-    "gulp-order": "^1.1.1",
+    "gulp-order": "^1.2.0",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "~1.2.2",
     "gulp-sass": "^2.3.2",
